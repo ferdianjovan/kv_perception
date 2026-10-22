@@ -1,0 +1,37 @@
+/**:
+  ros__parameters:
+    image_topic: rgb_camera/image
+    camera_info_topic: rgb_camera/camera_info
+    # Palette paths default to fogcolors.png/smokecolors.png in forest_map_generator.
+    # To override, add texture_paths with a nonempty list of absolute PNG paths.
+    min_texture_alpha: 16
+    # OpenCV HSV: H=0..179, S/V=0..255. Margins allow lighting/transparency changes.
+    hue_margin: 6
+    saturation_margin: 65
+    value_margin: 45
+    # Area is measured after resizing to max_processing_width.
+    min_blob_area: 64
+    min_blob_fraction: 0.001
+    morphology_kernel: 5
+    min_quadrant_fraction: 0.001
+    max_processing_width: 640
+    max_processing_rate: 5.0
+    # Learn a representative clear view including the sky before enabling detections.
+    # At 5 Hz, 30 processed frames take approximately 6 seconds.
+    background_calibration_frames: 30
+    # BGR histogram bin width, in 8-bit channel units (8 -> 32 bins/channel).
+    background_bin_size: 8
+    # A typical color occupies at least this image fraction in a sampled frame,
+    # and recurs in at least this fraction of calibration frames.
+    background_min_pixel_fraction: 0.001
+    background_min_frame_fraction: 0.6
+    # Expand learned color bins by this per-channel buffer, rounded up to bins.
+    background_color_margin: 12
+    # Require stable candidates across multiple processed frames before guidance.
+    confirmation_frames: 3
+    confirmation_max_center_distance: 0.12
+    confirmation_max_gap: 1.0
+    # OakD RGB sensor's horizontal field of view; CameraInfo takes precedence.
+    horizontal_fov: 1.204
+    # Assumed forward distance in metres; set zero to publish angles only.
+    assumed_distance_m: 10.0
